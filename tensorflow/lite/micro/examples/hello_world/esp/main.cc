@@ -15,15 +15,21 @@ limitations under the License.
 
 #include "../main_functions.h"
 #include "esp_cli.h"
+
+#define CLI_TEST
+
 extern "C" void app_main(void) {
   setup();
   esp_cli_init();
   esp_diag_register_cli();
-  //while (true) {
-  //  loop();
-  //}
+#ifdef CLI_TEST
   int count = 20;
   while (count--) {
     loop();
   }
+#else
+  while (true) {
+    loop();
+  }
+#endif
 }

@@ -18,12 +18,23 @@ limitations under the License.
 #include "esp_system.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "esp_cli.h"
+
+/* If your dev board does not have camera, you want to enable this */
+//#define CLI_TEST
 
 int tf_main(int argc, char* argv[]) {
   setup();
+#ifdef CLI_TEST
+  esp_cli_init();
+  esp_diag_register_cli();
+  vTaskDelay(portMAX_DELAY);
+#else
   while (true) {
     loop();
   }
+#endif
+  return 0;
 }
 
 extern "C" void app_main() {
