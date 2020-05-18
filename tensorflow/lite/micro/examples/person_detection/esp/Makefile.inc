@@ -30,7 +30,14 @@ CCFLAGS += -Wno-nonnull
 CXXFLAGS += -Wno-return-type -Wno-strict-aliasing
 person_detection_ESP_PROJECT_FILES := \
   sdkconfig.defaults \
-  main/Kconfig.projbuild
+  main/Kconfig.projbuild \
+  partitions.csv \
+  components/smtp_client/CMakeLists.txt \
+  components/smtp_client/Kconfig.projbuild \
+  components/smtp_client/esp_logo.png \
+  components/smtp_client/server_root_cert.pem \
+  components/smtp_client/smtp_client.c \
+  components/smtp_client/smtp_client.h
 
 # Remap downloaded model files as if they were in tensorflow/lite/micro/examples/..
 MODEL_DOWNLOADS_DIR := tensorflow/lite/micro/tools/make/downloads/person_model_grayscale
