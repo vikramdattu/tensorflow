@@ -1,0 +1,4 @@
+
+# Commands:
+
+ffmpeg -i cats_and_dogs_filtered/validation/cats/cat.2001.jpg -vf scale=160:160 -pix_fmt rgb24 cat.2001.rgb
