@@ -1,0 +1,3 @@
+[submodule "cats_and_dogs/components/esp32-camera"]
+	path = cats_and_dogs/components/esp32-camera
+	url = https://github.com/espressif/esp32-camera.git
