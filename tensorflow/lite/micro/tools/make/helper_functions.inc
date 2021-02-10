@@ -178,7 +178,7 @@ $(PRJDIR)$(3)/$(1)/Makefile: tensorflow/lite/micro/tools/make/templates/ceva/cev
 	sed -E 's#\%\{LD_FLAGS\}\%#$(6)#g' | \
 	sed -E 's#\%\{CXX_FLAGS\}\%#$(7)#g' | \
 	sed -E 's#\%\{CC_FLAGS\}\%#$(8)#g' > $$@
-	
+
 $(PRJDIR)$(3)/$(1)/%: tensorflow/lite/micro/tools/make/templates/ceva/%.tpl
 	@cp $$< $$@
 
@@ -426,6 +426,9 @@ $(PRJDIR)$(2)/esp-idf/%: tensorflow/lite/micro/tools/make/templates/esp/%.tpl
   $(eval MAIN_SRCS := $(filter tensorflow/lite/micro/examples/%,$(5)))
   $(eval MAIN_SRCS_RELATIVE := $(patsubst tensorflow/lite/micro/examples/$(2)/%,%,$(MAIN_SRCS)))
   $(eval TFLM_SRCS := $(filter-out tensorflow/lite/micro/examples/%,$(5)) $(3))
+
+# also remove person_detect_model_data.cc file
+  $(eval TFLM_SRCS := $(filter-out person_detect_model_data, $(TFLM_SRCS)))
 
 	@mkdir -p $$(dir $$@)
 	@sed -E 's#\%\{COMPONENT_SRCS\}\%#$(TFLM_SRCS)#g' $$< | \
