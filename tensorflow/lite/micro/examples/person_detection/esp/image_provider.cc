@@ -59,10 +59,11 @@ TfLiteStatus PerformCapture(tflite::ErrorReporter* error_reporter,
     return kTfLiteError;
   }
   TF_LITE_REPORT_ERROR(error_reporter, "Image Captured\n");
-
-  // FIXME: fb->buf is uint8_t
-  // Treating uint8_t as int8_t should just work fine for now
-  memcpy(image_data, fb->buf, fb->len);
+  
+  for (int i=0; i<fb->len; i++) {
+    image_data[i] = fb->buf[i] - 128;   
+  }
+  
   esp_camera_fb_return(fb);
   /* here the esp camera can give you grayscale image directly */
   return kTfLiteOk;
